@@ -5,7 +5,7 @@ HBase Object Model. Something that'll help you handle HTable records from your J
 
 Disclaimer
 ----
-I started it out to play around with new concepts of Java 8. It might turn out into something usefull though. This is still work in progress. 
+I started it out to play around with new concepts of Java 8. It might turn into something usefull though. This is still work in progress. 
 
 
 How to use it
