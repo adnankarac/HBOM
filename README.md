@@ -1,7 +1,7 @@
 HBOM
 ====
 
-HBase Object Model
+HBase Object Model. Something that'll help you handle HTable records from Java 8.
 
 Disclaimer
 ----
@@ -18,3 +18,5 @@ Just inherit it with your own class named after your HTable. For instance, if yo
 public class MyHbaseRecords extends HBaseObject {
 }
 </code>
+
+You should also implement all the constructors in your subclass (eventhough you'll probably just call super()) as they all throw IOException.
