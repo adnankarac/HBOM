@@ -8,7 +8,7 @@ public class TableName {
 	private final String tableName;
 	
 	@Pure
-	public TableName hungarize() {
+	public TableName toUndersoceNotation() {
 		return new TableName(
 				Arrays.asList(tableName.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"))
 				.stream()

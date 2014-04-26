@@ -9,6 +9,7 @@ import me.ak.utils.StringUtil;
 import me.ak.utils.TableName;
 import me.annotations.Pure;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.client.Get;
@@ -23,7 +24,7 @@ public abstract class HBaseObject {
 	@Pure
 	protected String tableName() {
 		return new TableName(this.getClass().getSimpleName())
-		.hungarize()
+		.toUndersoceNotation()
 		.pluralize().toString();
 	}
 	
@@ -76,6 +77,21 @@ public abstract class HBaseObject {
 		return Optional.ofNullable(this.contentWithFamilies.get(family));
 	}
 
+	public void save() {
+		throw new NotImplementedException();
+	}
+	
+	
+	//factory methods
+	public static HBaseObject create(String id) {
+		throw new NotImplementedException();
+	}
+	
+	public static HBaseObject find(String id) {
+		throw new NotImplementedException();
+	}
+	
+	//getters and setters
 	public String getId() {
 		return id;
 	}
