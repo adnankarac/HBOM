@@ -1,0 +1,4 @@
+# Java specific
+*.class
+*.jardesc
+
