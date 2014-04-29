@@ -1,4 +1,4 @@
-package me.annotations;
+package me.ak.annotations;
 
 public @interface Pure {
 

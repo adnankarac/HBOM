@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import me.ak.annotations.Pure;
 import me.ak.utils.StringUtil;
 import me.ak.utils.TableName;
-import me.annotations.Pure;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.hadoop.conf.Configuration;
@@ -19,7 +19,7 @@ import org.apache.hadoop.hbase.client.Result;
 public abstract class HBaseObject {
 	private String id;
 	private HTable table;
-	private Map<String, Map<String, String>> contentWithFamilies;
+	private Map<String, Map<String, byte[]>> contentWithFamilies;
 	
 	@Pure
 	protected String tableName() {
@@ -63,17 +63,17 @@ public abstract class HBaseObject {
 	private void initializeContent(Result res) {
 		this.contentWithFamilies = res.list().stream().collect(
 				Collectors.groupingBy(k -> StringUtil.byteToString(k.getFamily()),
-						Collectors.toMap(item -> StringUtil.byteToString(((KeyValue) item).getKey()), 
-										 item -> StringUtil.byteToString(((KeyValue) item).getValue())))	
+						Collectors.toMap(item -> StringUtil.byteToString(((KeyValue) item).getQualifier()), 
+										 item -> ((KeyValue) item).getValue()))	
 			);
 	}
 	
-	public Optional<String> get(String family, String qualifier) {
-		Optional<Map<String, String>> familyKeyValues = Optional.ofNullable(this.contentWithFamilies.get(family));
+	public Optional<byte[]> get(String family, String qualifier) {
+		Optional<Map<String, byte[]>> familyKeyValues = Optional.ofNullable(this.contentWithFamilies.get(family));
 		return familyKeyValues.map(m -> m.get(qualifier));
 	}
 	
-	public Optional<Map<String, String>> get(String family) {
+	public Optional<Map<String, byte[]>> get(String family) {
 		return Optional.ofNullable(this.contentWithFamilies.get(family));
 	}
 
@@ -88,6 +88,7 @@ public abstract class HBaseObject {
 	}
 	
 	public static HBaseObject find(String id) {
+		
 		throw new NotImplementedException();
 	}
 	

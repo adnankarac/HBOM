@@ -2,7 +2,7 @@ package me.ak.utils;
 
 import java.util.Arrays;
 
-import me.annotations.Pure;
+import me.ak.annotations.Pure;
 
 public class TableName {
 	private final String tableName;
