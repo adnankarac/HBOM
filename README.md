@@ -32,10 +32,12 @@ HBaseObjectManager.initialize(new Configuration());
 ```
 somewhere in your app initialization.
 
-### Getting recodrs
+### Getting records
 
 Initialize new object and pass row id as String to your constructor:
 
 ```java
 MyHbaseRecord rec = new MyHbaseRecord("1234");
 ```
+
+If record with that ID does not exist, you'll be left with an empty `rec` object with id you initialized it with.
