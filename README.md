@@ -25,6 +25,9 @@ You will need to initialize HBaseObjectMManager with your org.apache.hadoop.conf
 
 For example, if you are working locally, just do: 
 ```java
+import me.ak.hbase.HBaseObjectManager;
+import org.apache.hadoop.conf.Configuration;
+
 HBaseObjectManager.initialize(new Configuration());
 ```
 somewhere in your app initialization.
