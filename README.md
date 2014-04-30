@@ -15,15 +15,18 @@ Just inherit it with your own class named after your HTable. For instance, if yo
 
 ```java
 public class MyHbaseRecord extends HBaseObject {
+   public MyHbaseRecord(String id) {
+      super(id);
+   }
 }
 ```
 
 You will need to initialize HBaseObjectMManager with your org.apache.hadoop.conf.Configuration object:
 
 For example, if you are working locally, just do: 
-`java
+```java
 HBaseObjectManager.initialize(new Configuration());
-`
+```
 somewhere in your app initialization.
 
 ### Getting recodrs
