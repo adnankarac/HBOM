@@ -2,3 +2,6 @@
 *.class
 *.jardesc
 *.prefs
+
+src/me/ak/User.java
+src/me/ak/App.java

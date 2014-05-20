@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import me.ak.annotations.Pure;
-import me.ak.hbase.persistence.Persistence;
 import me.ak.utils.StringUtil;
 import me.ak.utils.TableName;
 
@@ -57,9 +56,11 @@ public abstract class HBaseObject {
 	public Optional<Map<String, byte[]>> get(String family) {
 		return Optional.ofNullable(this.contentWithFamilies.get(family));
 	}
-
+	
 	public void save() {
-		throw new NotImplementedException();
+		HBaseObjectManager.instance()
+			.getPersistance(this.tableName())
+			.ifPresent(x -> x.put(this.id, this.contentWithFamilies));
 	}
 	
 	
@@ -69,7 +70,6 @@ public abstract class HBaseObject {
 	}
 	
 	public static HBaseObject find(String id) {
-		
 		throw new NotImplementedException();
 	}
 	
